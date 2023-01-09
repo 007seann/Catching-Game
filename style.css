@@ -1,0 +1,22 @@
+body {
+  background-image: url("img/background.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+img {
+  position: fixed;
+}
+
+.ground { 
+  /* position: relative; */
+  /* background-color: aquamarine; */
+}
+
+.carrot-box {
+
+}
+
+#mon {
+  
+}
