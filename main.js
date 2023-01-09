@@ -2,16 +2,34 @@ import { v4 as uuidv4 } from 'https://cdn.skypack.dev/uuid';
 
 const startButton = document.querySelector('.start-game');
 const ground = document.querySelector('.ground');
-const img = document.querySelectorAll('img');
+const img = document.querySelectorAll('img')
 const body = document.querySelector('body');
 const imgPoss = [];
 const objectNumber = 10;
-
 let maxX, maxY;
+const counting = document.querySelector('.counting');
+var carrotCount;
+
+
+
+
+
+
+
+startButton.addEventListener('click', () => {
+  for (var i = 0; i < objectNumber; i++) {
+    onAdd();
+  }
+  const count = ground.querySelectorAll('#carrot').length;
+  carrotCount = count;
+  counting.innerHTML = carrotCount;
+  console.log(carrotCount)
+
+});
 
 function onAdd() {
-  const carrot = createItem("carrot");
-  const bug = createItem("bug");
+  const carrot = createItem('carrot');
+  const bug = createItem('bug');
   ground.appendChild(carrot);
   ground.appendChild(bug);
 }
@@ -27,24 +45,30 @@ function createItem(input) {
   item.setAttribute('class', 'item');
   item.setAttribute('style', `left: ${x}px; top: ${y}px;`);
   item.setAttribute('data-uuid', uuid);
-  item.setAttribute('id', `${input}`)
+  item.setAttribute('id', `${input}`);
   imgPoss.push({ x, y });
   return item;
 }
 
 
-
-startButton.addEventListener('click', () => {
-  for (var i = 0; i < objectNumber; i++) {
-    onAdd();
-  }
-});
-
 ground.addEventListener('click', (event) => {
   const uuid = event.target.dataset.uuid;
+  const value = event.target.attributes.id.value;
+  
   if (uuid) {
-    const toBeDeleted = document.querySelector(`.item[data-uuid="${uuid}"]`);
-    toBeDeleted.remove();
+    if (value === "carrot") {
+      const toBeDeleted = document.querySelector(`.item[data-uuid="${uuid}"]`);
+      toBeDeleted.remove();
+      const count = ground.querySelectorAll('#carrot').length;
+      carrotCount = count;
+      counting.innerHTML = carrotCount;
+      if(carrotCount == 0) {
+        console.log("win!")
+      }
+    }
+    if (value === "bug") {
+      console.log("lose:(")
+    }
   }
 });
 

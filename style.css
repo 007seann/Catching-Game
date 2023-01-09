@@ -13,10 +13,6 @@ img {
   /* background-color: aquamarine; */
 }
 
-.carrot-box {
-
-}
-
-#mon {
-  
+.counting {
+  display: none;
 }
