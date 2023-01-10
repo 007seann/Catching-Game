@@ -3,8 +3,6 @@ import { v4 as uuidv4 } from 'https://cdn.skypack.dev/uuid';
 const startButton = document.querySelector('.game__button');
 const header = document.querySelector('.game__header');
 const ground = document.querySelector('.game__field');
-const img = document.querySelectorAll('img');
-const body = document.querySelector('body');
 const imgPoss = [];
 const objectNumber = 10;
 let maxX, maxY;
@@ -14,7 +12,7 @@ const footer = document.querySelector('.pop-up');
 const message = document.querySelector('.pop-up__message');
 // Timer
 const timer = document.querySelector('.game__timer');
-let seconds = 1000;
+let seconds = 10;
 let timerId;
 
 startButton.addEventListener('click', () => {
@@ -47,10 +45,12 @@ function createItem(input) {
   const y = r() * maxY;
   let uuid = uuidv4();
 
+  console.log(y);
+
   const item = document.createElement('img');
   item.setAttribute('src', `img/${input}.png`);
   item.setAttribute('class', 'item');
-  item.setAttribute('style', `left: ${x}px; top: ${y}px;`);
+  item.setAttribute('style', `position: absolute; left: ${x}px; top: ${y}px;`);
   item.setAttribute('data-uuid', uuid);
   item.setAttribute('id', `${input}`);
   imgPoss.push({ x, y });
@@ -84,12 +84,14 @@ ground.addEventListener('click', (event) => {
 
 onload = function () {
   maxX = innerWidth - 128;
-  maxY = innerHeight - 160;
+  maxY = innerHeight - 280;
+  console.log(this.innerHeight);
+  console.log(this.innerWidth);
 };
 
 onresize = function () {
   maxX = innerWidth - 128;
-  maxY = innerHeight - 160;
+  maxY = innerHeight - 280;
 };
 
 function showTime() {
@@ -108,12 +110,6 @@ function startTimer() {
     header.style.display = 'none';
     footer.style.display = 'block';
     message.innerHTML = 'LOST!';
-  }, 1000000);
+  }, 10000);
 }
 
-// function isTimeout() {
-//   if (timerId != null) {
-//     return true;
-//   }
-//   return false;
-// }

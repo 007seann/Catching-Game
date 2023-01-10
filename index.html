@@ -16,13 +16,15 @@
   <body>
     <section class="game">
       <header class="game__header">
-        <button onclick="showDiv()" class="game__button">
+        <button class="game__button">
           <i class="fa-solid fa-play"></i>
         </button>
         <div class="game__timer">0</div>
         <div class="game__score">0</div>
       </header>
-      <section class="game__field"></section>
+      <section class="game__field">
+
+      </section>
     </section>
     <section class="pop-up pop-up--hide">
       <button onclick="location.reload()" class="pop-up__refresh">
@@ -30,13 +32,5 @@
       </button>
       <div class="pop-up__message">message</div>
     </section>
-
-    <!-- <img class="carrot" src="img/carrot.png" alt="carrot"> -->
-    <script>
-      function showDiv() {
-        const counting = document.querySelector('.counting');
-        counting.style.display = 'block';
-      }
-    </script>
   </body>
 </html>
