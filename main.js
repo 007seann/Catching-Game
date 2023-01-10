@@ -1,19 +1,19 @@
 import { v4 as uuidv4 } from 'https://cdn.skypack.dev/uuid';
 
-const startButton = document.querySelector('.start-game');
-const header = document.querySelector('.header');
-const ground = document.querySelector('.ground');
+const startButton = document.querySelector('.game__button');
+const header = document.querySelector('.game__header');
+const ground = document.querySelector('.game__field');
 const img = document.querySelectorAll('img');
 const body = document.querySelector('body');
 const imgPoss = [];
 const objectNumber = 10;
 let maxX, maxY;
-const counting = document.querySelector('.counting');
+const counting = document.querySelector('.game__score');
 var allyCount;
-const footer = document.querySelector('.footer');
-const message = document.querySelector('.message');
+const footer = document.querySelector('.pop-up');
+const message = document.querySelector('.pop-up__message');
 // Timer
-const timer = document.querySelector('.timer');
+const timer = document.querySelector('.game__timer');
 let seconds = 1000;
 let timerId;
 

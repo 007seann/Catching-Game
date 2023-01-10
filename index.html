@@ -1,39 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Catching Game</title>
-  <script type="module" src="main.js" defer></script>
-  <link rel="stylesheet" href="style.css" />
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Catching Game</title>
+    <script type="module" src="main.js" defer></script>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/9a75e3b371.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
 
-<body>
-<section class="game">
-  <header class="header">
-    <button onclick="showDiv()" class="start-game">Start</button>
-    <div class="timer">0</div>
-    <div class="counting">0</div>  
-  </header>
-  <div class="ground"></div>
-  <section class="footer">
-    <button onclick="location.reload()" class="replay-game">Replay Game</button>
-    <div class="message">message</div>
-  </section>
+  <body>
+    <section class="game">
+      <header class="game__header">
+        <button onclick="showDiv()" class="game__button">
+          <i class="fa-solid fa-play"></i>
+        </button>
+        <div class="game__timer">0</div>
+        <div class="game__score">0</div>
+      </header>
+      <section class="game__field"></section>
+    </section>
+    <section class="pop-up pop-up--hide">
+      <button onclick="location.reload()" class="pop-up__refresh">
+        <i class="fa-solid fa-rotate-right"></i>
+      </button>
+      <div class="pop-up__message">message</div>
+    </section>
 
-
-  
-</section>
-
-<!-- <img class="carrot" src="img/carrot.png" alt="carrot"> -->
-<script>
-  function showDiv() {
-    const counting = document.querySelector('.counting');
-    counting.style.display = 'block';
-  }
-
-</script>
-
-</body>
+    <!-- <img class="carrot" src="img/carrot.png" alt="carrot"> -->
+    <script>
+      function showDiv() {
+        const counting = document.querySelector('.counting');
+        counting.style.display = 'block';
+      }
+    </script>
+  </body>
 </html>
