@@ -2,19 +2,15 @@ import { v4 as uuidv4 } from 'https://cdn.skypack.dev/uuid';
 
 const startButton = document.querySelector('.start-game');
 const ground = document.querySelector('.ground');
-const img = document.querySelectorAll('img')
+const img = document.querySelectorAll('img');
 const body = document.querySelector('body');
 const imgPoss = [];
 const objectNumber = 10;
 let maxX, maxY;
 const counting = document.querySelector('.counting');
 var carrotCount;
-
-
-
-
-
-
+const footer = document.querySelector('.footer');
+const message = document.querySelector('.message');
 
 startButton.addEventListener('click', () => {
   for (var i = 0; i < objectNumber; i++) {
@@ -23,9 +19,13 @@ startButton.addEventListener('click', () => {
   const count = ground.querySelectorAll('#carrot').length;
   carrotCount = count;
   counting.innerHTML = carrotCount;
-  console.log(carrotCount)
-
+  console.log(carrotCount);
+  startButton.disabled = true;
 });
+
+window.onload = () => {
+  startButton.disabled = false;
+}
 
 function onAdd() {
   const carrot = createItem('carrot');
@@ -50,24 +50,29 @@ function createItem(input) {
   return item;
 }
 
-
 ground.addEventListener('click', (event) => {
   const uuid = event.target.dataset.uuid;
   const value = event.target.attributes.id.value;
-  
+
   if (uuid) {
-    if (value === "carrot") {
+    if (value === 'carrot') {
       const toBeDeleted = document.querySelector(`.item[data-uuid="${uuid}"]`);
       toBeDeleted.remove();
       const count = ground.querySelectorAll('#carrot').length;
       carrotCount = count;
       counting.innerHTML = carrotCount;
-      if(carrotCount == 0) {
-        console.log("win!")
+      if (carrotCount == 0) {
+        startButton.style.display = 'none';
+        counting.style.display = 'none';
+        footer.style.display = 'block';
+        message.innerHTML = 'Win!';
       }
     }
-    if (value === "bug") {
-      console.log("lose:(")
+    if (value === 'bug') {
+      startButton.style.display = 'none';
+      counting.style.display = 'none';
+      footer.style.display = 'block';
+      message.innerHTML = 'lose!';
     }
   }
 });
