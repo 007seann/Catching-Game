@@ -16,7 +16,7 @@
   <body>
     <section class="game">
       <header class="game__header">
-        <button class="game__button">
+        <button onclick="document.querySelector('.game__bg').play()" class="game__button">
           <i class="fa-solid fa-play"></i>
         </button>
         <div class="game__timer">0</div>
@@ -32,5 +32,11 @@
       </button>
       <div class="pop-up__message">message</div>
     </section>
+
+    <audio class="game__alert" src="sound/alert.wav"></audio>
+    <audio class="game__bg" src="sound/bg.mp3"></audio>
+    <audio class="game__enemy_pull" src="sound/bug_pull.mp3"></audio>
+    <audio class="game__ally_pull" src="sound/carrot_pull.mp3"></audio>
+    <audio class="game__game_win" src="sound/game_win.mp3"></audio>
   </body>
 </html>

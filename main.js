@@ -2,26 +2,32 @@ import { v4 as uuidv4 } from 'https://cdn.skypack.dev/uuid';
 
 const startButton = document.querySelector('.game__button');
 const header = document.querySelector('.game__header');
-const ground = document.querySelector('.game__field');
+const field = document.querySelector('.game__field');
 const imgPoss = [];
 const objectNumber = 10;
 let maxX, maxY;
-const counting = document.querySelector('.game__score');
+const score = document.querySelector('.game__score');
 var allyCount;
-const footer = document.querySelector('.pop-up');
+const popUp = document.querySelector('.pop-up');
 const message = document.querySelector('.pop-up__message');
 // Timer
 const timer = document.querySelector('.game__timer');
 let seconds = 10;
 let timerId;
 
+// Sound Effect
+const allySound = document.querySelector('.game__ally_pull');
+const enemySound = document.querySelector('.game__enemy_pull');
+const bgSonud = document.querySelector('.game__bg');
+const winSound = document.querySelector('.game__game_win')
+
 startButton.addEventListener('click', () => {
   for (var i = 0; i < objectNumber; i++) {
     onAdd();
   }
-  const count = ground.querySelectorAll('#spaceship').length;
+  const count = field.querySelectorAll('#spaceship').length;
   allyCount = count;
-  counting.innerHTML = allyCount;
+  score.innerHTML = allyCount;
   startButton.disabled = true;
   startTimer();
   showTime();
@@ -35,8 +41,8 @@ window.onload = () => {
 function onAdd() {
   const ally = createItem('spaceship');
   const enemy = createItem('alien');
-  ground.appendChild(ally);
-  ground.appendChild(enemy);
+  field.appendChild(ally);
+  field.appendChild(enemy);
 }
 
 function createItem(input) {
@@ -57,26 +63,32 @@ function createItem(input) {
   return item;
 }
 
-ground.addEventListener('click', (event) => {
+field.addEventListener('click', (event) => {
   const uuid = event.target.dataset.uuid;
   const value = event.target.attributes.id.value;
 
   if (uuid) {
     if (value === 'spaceship') {
+      allySound.play();
       const toBeDeleted = document.querySelector(`.item[data-uuid="${uuid}"]`);
       toBeDeleted.remove();
-      const count = ground.querySelectorAll('#spaceship').length;
+      const count = field.querySelectorAll('#spaceship').length;
       allyCount = count;
-      counting.innerHTML = allyCount;
+      score.innerHTML = allyCount;
       if (allyCount == 0) {
-        footer.style.display = 'block';
+        winSound.play();
+        bgSonud.pause();
+        clearTimeout(timerId);
+        popUp.style.display = 'block';
         message.innerHTML = 'WIN!';
         header.style.display = 'none';
       }
     }
     if (value === 'alien') {
+      enemySound.play();
+      bgSonud.pause();
       header.style.display = 'none';
-      footer.style.display = 'block';
+      popUp.style.display = 'block';
       message.innerHTML = 'LOST!';
     }
   }
@@ -108,8 +120,10 @@ function startTimer() {
   timerId = setTimeout(() => {
     console.log('COMplete');
     header.style.display = 'none';
-    footer.style.display = 'block';
-    message.innerHTML = 'LOST!';
+    popUp.style.display = 'block';
+    if(message.innerHTML !== 'WIN!') {
+      message.innerHTML = 'LOST!';
+    }
   }, 10000);
 }
 
