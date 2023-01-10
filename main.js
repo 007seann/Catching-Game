@@ -1,6 +1,7 @@
 import { v4 as uuidv4 } from 'https://cdn.skypack.dev/uuid';
 
 const startButton = document.querySelector('.start-game');
+const header = document.querySelector('.header');
 const ground = document.querySelector('.ground');
 const img = document.querySelectorAll('img');
 const body = document.querySelector('body');
@@ -13,9 +14,8 @@ const footer = document.querySelector('.footer');
 const message = document.querySelector('.message');
 // Timer
 const timer = document.querySelector('.timer');
-let seconds = 10; 
+let seconds = 1000;
 let timerId;
-
 
 startButton.addEventListener('click', () => {
   for (var i = 0; i < objectNumber; i++) {
@@ -69,17 +69,15 @@ ground.addEventListener('click', (event) => {
       allyCount = count;
       counting.innerHTML = allyCount;
       if (allyCount == 0) {
-        startButton.style.display = 'none';
-        counting.style.display = 'none';
         footer.style.display = 'block';
-        message.innerHTML = 'Win!';
+        message.innerHTML = 'WIN!';
+        header.style.display = 'none';
       }
     }
     if (value === 'alien') {
-      startButton.style.display = 'none';
-      counting.style.display = 'none';
+      header.style.display = 'none';
       footer.style.display = 'block';
-      message.innerHTML = 'lose!';
+      message.innerHTML = 'LOST!';
     }
   }
 });
@@ -107,11 +105,10 @@ function showTime() {
 function startTimer() {
   timerId = setTimeout(() => {
     console.log('COMplete');
-    startButton.style.display = 'none';
-    counting.style.display = 'none';
+    header.style.display = 'none';
     footer.style.display = 'block';
-    message.innerHTML = 'lose!';
-  }, 10000);
+    message.innerHTML = 'LOST!';
+  }, 1000000);
 }
 
 // function isTimeout() {
@@ -120,5 +117,3 @@ function startTimer() {
 //   }
 //   return false;
 // }
-
-

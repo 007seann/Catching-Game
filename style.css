@@ -2,6 +2,7 @@ body {
   background-image: url('img/space-background.jpg');
   background-size: cover;
   background-repeat: no-repeat;
+  text-align: center;
 }
 
 img {
@@ -11,29 +12,55 @@ img {
 .ground {
 }
 
+.header {
+  position: absolute;
+  text-align: center;
+  left: 50%;
+  background-color: aliceblue;
+  width: 20vw;
+  margin: auto;
+  transform: translateX(-50%);
+  padding: 10px;
+  border-radius: 10px;
+}
+
 .footer {
   display: none;
   position: absolute;
   left: 50%;
   top: 50%;
-
-}
-
-.header {
-  position: absolute;
-  left: 50%;
+  background-color: aliceblue;
+  width: 250px;
+  height: 140px;
+  text-align: center;
+  transform: translateX(-50%);
+  z-index: 1;
+  border-radius: 10px;;
 }
 
 .counting {
+  width: 41px;
   display: none;
+  text-align: center;
+  font-size: 35px;
+  font-weight: bold;
+  color: whitesmoke;
+  border-radius: 50%;
+  background-color: black;
+  margin-top: 8px;
+  transform: translateX(+220%);
 }
 
 .timer {
   display: none;
+  width: 100px;
   text-align: center;
-  font-size: 50px;
+  font-size: 24px;
   font-weight: bold;
-  color: #333;
+  color: black;
+  border: 5px solid black;
+  border-radius: 10px;
+  transform: translateX(+50%);
 }
 
 .start-game {
@@ -46,14 +73,14 @@ img {
   text-transform: uppercase;
   border-radius: 4px;
   transition: background-color 0.3s ease;
+  margin: 10px;
+
 }
 
 .start-game:hover {
   background-color: #6b6b6b;
   color: white;
 }
-
-
 
 .replay-game {
   display: inline-block;
@@ -65,16 +92,13 @@ img {
   text-transform: uppercase;
   border-radius: 4px;
   transition: background-color 0.3s ease;
-
-
-
+  margin: 16px;
 }
 
 .message {
-  display: inline-block;
+  display: block;
   padding: 10px 20px;
-  font-size: 16px;
+  font-size: 35px;
   font-weight: bold;
-
-
+  text-align: center;
 }
