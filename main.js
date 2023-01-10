@@ -8,22 +8,22 @@ const imgPoss = [];
 const objectNumber = 10;
 let maxX, maxY;
 const counting = document.querySelector('.counting');
-var carrotCount;
+var allyCount;
 const footer = document.querySelector('.footer');
 const message = document.querySelector('.message');
 // Timer
 const timer = document.querySelector('.timer');
-let seconds = 10; // miliseconds
+let seconds = 10; 
 let timerId;
-var time;
+
 
 startButton.addEventListener('click', () => {
   for (var i = 0; i < objectNumber; i++) {
     onAdd();
   }
-  const count = ground.querySelectorAll('#carrot').length;
-  carrotCount = count;
-  counting.innerHTML = carrotCount;
+  const count = ground.querySelectorAll('#spaceship').length;
+  allyCount = count;
+  counting.innerHTML = allyCount;
   startButton.disabled = true;
   startTimer();
   showTime();
@@ -35,10 +35,10 @@ window.onload = () => {
 };
 
 function onAdd() {
-  const carrot = createItem('carrot');
-  const bug = createItem('bug');
-  ground.appendChild(carrot);
-  ground.appendChild(bug);
+  const ally = createItem('spaceship');
+  const enemy = createItem('alien');
+  ground.appendChild(ally);
+  ground.appendChild(enemy);
 }
 
 function createItem(input) {
@@ -62,20 +62,20 @@ ground.addEventListener('click', (event) => {
   const value = event.target.attributes.id.value;
 
   if (uuid) {
-    if (value === 'carrot') {
+    if (value === 'spaceship') {
       const toBeDeleted = document.querySelector(`.item[data-uuid="${uuid}"]`);
       toBeDeleted.remove();
-      const count = ground.querySelectorAll('#carrot').length;
-      carrotCount = count;
-      counting.innerHTML = carrotCount;
-      if (carrotCount == 0) {
+      const count = ground.querySelectorAll('#spaceship').length;
+      allyCount = count;
+      counting.innerHTML = allyCount;
+      if (allyCount == 0) {
         startButton.style.display = 'none';
         counting.style.display = 'none';
         footer.style.display = 'block';
         message.innerHTML = 'Win!';
       }
     }
-    if (value === 'bug') {
+    if (value === 'alien') {
       startButton.style.display = 'none';
       counting.style.display = 'none';
       footer.style.display = 'block';
@@ -105,7 +105,7 @@ function showTime() {
 }
 
 function startTimer() {
-  timerId = setTimeout((event) => {
+  timerId = setTimeout(() => {
     console.log('COMplete');
     startButton.style.display = 'none';
     counting.style.display = 'none';
@@ -114,34 +114,11 @@ function startTimer() {
   }, 10000);
 }
 
-function isTimeout() {
-  if (timerId != null) {
-    return true;
-  }
-  return false;
-}
-
-// function startTimer() {
-//   timerId = setTimeout(() => {
-//     console.log('timer')
-
-//     // seconds--;
-//     // timer.innerHTML = seconds;
-//   }, seconds);
-//   return seconds;
-// }
-
 // function isTimeout() {
-//   if(timerId != null) {
+//   if (timerId != null) {
 //     return true;
 //   }
 //   return false;
 // }
-// function isTimeout2() {
-//   return clearTimeout(timerId);
-// }
-// }
 
-// function stopTimer() {
-//   clearInterval(timerId);
-// }
+

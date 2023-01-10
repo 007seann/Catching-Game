@@ -1,5 +1,5 @@
 body {
-  background-image: url('img/background.png');
+  background-image: url('img/space-background.jpg');
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -11,14 +11,70 @@ img {
 .ground {
 }
 
+.footer {
+  display: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+
+}
+
+.header {
+  position: absolute;
+  left: 50%;
+}
+
 .counting {
   display: none;
 }
 
 .timer {
   display: none;
+  text-align: center;
+  font-size: 50px;
+  font-weight: bold;
+  color: #333;
 }
 
-.footer {
-  display: none;
+.start-game {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.start-game:hover {
+  background-color: #6b6b6b;
+  color: white;
+}
+
+
+
+.replay-game {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+
+
+
+}
+
+.message {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+
+
 }
