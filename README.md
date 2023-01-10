@@ -1,5 +1,8 @@
 # Catching-Game
 
+Play it here!
+https://007seann.github.io/Catching-Game/
+
 ## How To Make
 
 ### Click Start Button
