@@ -3,7 +3,7 @@
 Play it here!
 https://007seann.github.io/Catching-Game/
 
-## Screent Shots
+## Screen Shots
 <img width="400" alt="Screenshot 2023-01-10 at 22 23 09" src="https://user-images.githubusercontent.com/71544407/211675163-9cf95e88-6b95-44dd-a208-743ec2a38845.png">
 
 <img width="400" alt="Screenshot 2023-01-10 at 22 23 35" src="https://user-images.githubusercontent.com/71544407/211675218-fe002d88-99fc-46ac-a8cc-caa851152312.png">
@@ -11,9 +11,7 @@ https://007seann.github.io/Catching-Game/
 <img width="400" alt="Screenshot 2023-01-10 at 22 23 17" src="https://user-images.githubusercontent.com/71544407/211675213-3dd8cbd4-7e3d-44c0-b832-782e40f85ddb.png">
 
 
-
-
-## How To Make
+## Function List of The Game
 
 ### Click Start Button
 
