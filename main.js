@@ -11,6 +11,11 @@ const counting = document.querySelector('.counting');
 var carrotCount;
 const footer = document.querySelector('.footer');
 const message = document.querySelector('.message');
+// Timer
+const timer = document.querySelector('.timer');
+let seconds = 10; // miliseconds
+let timerId;
+var time;
 
 startButton.addEventListener('click', () => {
   for (var i = 0; i < objectNumber; i++) {
@@ -19,13 +24,15 @@ startButton.addEventListener('click', () => {
   const count = ground.querySelectorAll('#carrot').length;
   carrotCount = count;
   counting.innerHTML = carrotCount;
-  console.log(carrotCount);
   startButton.disabled = true;
+  startTimer();
+  showTime();
+  timer.style.display = 'block';
 });
 
 window.onload = () => {
   startButton.disabled = false;
-}
+};
 
 function onAdd() {
   const carrot = createItem('carrot');
@@ -87,12 +94,54 @@ onresize = function () {
   maxY = innerHeight - 160;
 };
 
-// function isOverlap(x, y) { // return true if overlapping
-//   const img = {x: 128, y:160};
+function showTime() {
+  timerId = setInterval(() => {
+    seconds--;
+    timer.innerHTML = seconds;
+    if (seconds == 0) {
+      clearInterval(timerId);
+    }
+  }, 1000);
+}
 
-//   for(const imgPos of imgPoss) {
-//       if( x>imgPos.x-img.x && x<imgPos.x+img.x &&
-//           y>imgPos.y-img.y && y<imgPos.y+img.y ) return true;
+function startTimer() {
+  timerId = setTimeout((event) => {
+    console.log('COMplete');
+    startButton.style.display = 'none';
+    counting.style.display = 'none';
+    footer.style.display = 'block';
+    message.innerHTML = 'lose!';
+  }, 10000);
+}
+
+function isTimeout() {
+  if (timerId != null) {
+    return true;
+  }
+  return false;
+}
+
+// function startTimer() {
+//   timerId = setTimeout(() => {
+//     console.log('timer')
+
+//     // seconds--;
+//     // timer.innerHTML = seconds;
+//   }, seconds);
+//   return seconds;
+// }
+
+// function isTimeout() {
+//   if(timerId != null) {
+//     return true;
 //   }
 //   return false;
+// }
+// function isTimeout2() {
+//   return clearTimeout(timerId);
+// }
+// }
+
+// function stopTimer() {
+//   clearInterval(timerId);
 // }
