@@ -20,6 +20,7 @@ const allySound = document.querySelector('.game__ally_pull');
 const enemySound = document.querySelector('.game__enemy_pull');
 const bgSonud = document.querySelector('.game__bg');
 const winSound = document.querySelector('.game__game_win')
+const alertSound = document.querySelector('.game__alert');
 
 startButton.addEventListener('click', () => {
   for (var i = 0; i < objectNumber; i++) {
@@ -121,6 +122,7 @@ function startTimer() {
     console.log('COMplete');
     header.style.display = 'none';
     popUp.style.display = 'block';
+    alertSound.play();
     if(message.innerHTML !== 'WIN!') {
       message.innerHTML = 'LOST!';
     }
