@@ -20,9 +20,9 @@ https://007seann.github.io/Catching-Game/
 ### Start Game
 
 - Audio play
-- Create Carrot and bugs
+- Create Spaceship and Aliens
 - Start Timer
-- Count Carrot
+- Count Spaceship
 
 ### SpaceShips
 
