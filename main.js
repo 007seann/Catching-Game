@@ -3,20 +3,6 @@
 ///
 import { v4 as uuidv4 } from 'https://cdn.skypack.dev/uuid';
 
-const header = document.querySelector('.game__header');
-
-const imgPoss = [];
-const objectNumber = 10;
-let maxX, maxY;
-
-var allyCount;
-
-// Timer
-
-let seconds = 10;
-let timerId;
-
-
 ///
 const SPACESHIP_COUNT = 5;
 const SPACESHIP_SIZE = 80;
@@ -53,7 +39,7 @@ gameBtn.addEventListener('click', () => {
 
 field.addEventListener('click', (event) => onFieldClick(event));
 
-popUpRefresh.addEventListener('click', ()=> {
+popUpRefresh.addEventListener('click', () => {
   startGame();
   hidePopUp();
 })
@@ -151,9 +137,9 @@ function randomNumber(min, max) {
 }
 
 function showStopButton() {
-  const icon = gameBtn.querySelector('fa-play');
+  const icon = gameBtn.querySelector('.fa-play');
   icon.classList.add('fa-stop');
-  icon.classList.remove('fa-play');
+  icon.classList.remove('.fa-play');
   gameBtn.style.visibility = 'visible';
 }
 
@@ -185,13 +171,17 @@ function hideGameButton() {
   gameBtn.style.visibility = 'hidden';
 }
 
-function showPopUpWithText() {
+function showPopUpWithText(text) {
   popUpMessage.innerText = text;
   popUp.classList.remove('pop-up--hide');
 }
 
 function stopGameTimer() {
   clearInterval(timer);
+}
+
+function hidePopUp() {
+  popUp.classList.add('pop-up--hide');
 }
 
 
