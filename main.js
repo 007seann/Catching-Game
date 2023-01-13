@@ -1,17 +1,20 @@
+'use strict'
+
+///
 import { v4 as uuidv4 } from 'https://cdn.skypack.dev/uuid';
 
-const startButton = document.querySelector('.game__button');
+
 const header = document.querySelector('.game__header');
-const field = document.querySelector('.game__field');
+
 const imgPoss = [];
 const objectNumber = 10;
 let maxX, maxY;
-const score = document.querySelector('.game__score');
+
 var allyCount;
 const popUp = document.querySelector('.pop-up');
 const message = document.querySelector('.pop-up__message');
 // Timer
-const timer = document.querySelector('.game__timer');
+const gameTimer = document.querySelector('.game__timer');
 let seconds = 10;
 let timerId;
 
@@ -21,22 +24,99 @@ const enemySound = document.querySelector('.game__enemy_pull');
 const bgSonud = document.querySelector('.game__bg');
 const winSound = document.querySelector('.game__game_win')
 const alertSound = document.querySelector('.game__alert');
+///
 
-startButton.addEventListener('click', () => {
+const field = document.querySelector('.game__field');
+const fieldRect = field.getBoundingClientRect();
+const gameBtn = document.querySelector('.game__button');
+const gameScore = document.querySelector('.game__score');
+
+
+const SPACESHIP_COUNT = 5;
+const SPACESHIP_SIZE = 80;
+const ALIEN_COUNT = 5;
+const GAME_DURATION_SEC = 5;
+
+let started = false;
+let score = 0;
+let timer = undefined;
+
+field.addEventListener('click', (event) => onFieldClick(event));
+gameBtn.addEventListener('click', () => {
+  if (started) {
+    stopGame();
+  } else {
+    startGame();
+  }
+})
+
+function startGame() {
+  started = true;
+  initGame();
+  showStopButton();
+  showTimerAndScore();
+  startGameTimer();
+  playSound();
+}
+
+function stopGame() {
+  started = false;
+  stopGameTimer();
+  hideGameButton();
+  showPopUpWithText('Yo, Replay?');
+  stopSound();
+  playSound();
+}
+
+function initGame() {
+  score = 0;
+  field.innerHTML = '';
+  gameScore.innerText = SPACESHIP_COUNT;
+  addItem('spaceship', SPACESHIP_COUNT, 'img/spaceship.png');
+  addItem('alien', ALIEN_COUNT, 'img/alien.png');
+}
+
+function onFieldClick(event) {
+
+}
+
+function addItem(className, count, imgPath) {
+  const x1 = 0;
+  const y1 = 0;
+  const x2 = fieldRect.width - SPACESHIP_SIZE;
+  const y2 = fieldRect.height - SPACESHIP_SIZE;
+  for (let i = 0; i < count; i++) {
+    const item = document.createElement('img');
+    item.setAttribute('class', className);
+    item.setAttribute('src', imgPath)
+    item.style.position = 'absolute';
+    const x = randomNumber(x1, x2);
+    const y = randomNumber(y1, y2);
+    item.style.left = `${x}px`;
+    item.style.top = `${y}px`;
+    field.appendChild(item);
+  }
+}
+
+function randomNumber(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
+gameBtn.addEventListener('click', () => {
   for (var i = 0; i < objectNumber; i++) {
     onAdd();
   }
   const count = field.querySelectorAll('#spaceship').length;
   allyCount = count;
-  score.innerHTML = allyCount;
-  startButton.disabled = true;
+  gameScore.innerHTML = allyCount;
+  gameBtn.disabled = true;
   startTimer();
   showTime();
-  timer.style.display = 'block';
+  gamTtimer.style.display = 'block';
 });
 
 window.onload = () => {
-  startButton.disabled = false;
+  gameBtn.disabled = false;
 };
 
 function onAdd() {
@@ -75,7 +155,7 @@ field.addEventListener('click', (event) => {
       toBeDeleted.remove();
       const count = field.querySelectorAll('#spaceship').length;
       allyCount = count;
-      score.innerHTML = allyCount;
+      gameScore.innerHTML = allyCount;
       if (allyCount == 0) {
         winSound.play();
         bgSonud.pause();
@@ -110,7 +190,7 @@ onresize = function () {
 function showTime() {
   timerId = setInterval(() => {
     seconds--;
-    timer.innerHTML = seconds;
+    gamTtimer.innerHTML = seconds;
     if (seconds == 0) {
       clearInterval(timerId);
     }
