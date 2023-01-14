@@ -38,7 +38,7 @@ let timer = undefined;
 
 gameTitle.setAttribute('src', 'img/Star-Wars_logo.png')
 gameSubTitle.innerHTML = "How to Play ?"
-gameMessage.innerHTML = " Destory All Aliens Within the Time Limit <br>    "
+gameMessage.innerHTML = " Destroy All Aliens Within the Time Limit <br>    "
 
 // playSound(bgSound);
 gameBtn.addEventListener('click', () => {
