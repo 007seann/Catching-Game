@@ -4,10 +4,10 @@
 import { v4 as uuidv4 } from 'https://cdn.skypack.dev/uuid';
 
 ///
-const ALLY_COUNT = 10;
+const ALLY_COUNT = 3;
 const ALLY_SIZE = 80;
-const ENEMY_COUNT = 10;
-const GAME_DURATION_SEC = 10;
+const ENEMY_COUNT = 3;
+const GAME_DURATION_SEC = 3;
 
 const field = document.querySelector('.game__field');
 const fieldRect = field.getBoundingClientRect();
@@ -24,9 +24,12 @@ const popUpMessage = document.querySelector('.pop-up__message');
 const popUpRefresh = document.querySelector('.pop-up__refresh');
 
 const allySound = new Audio('sound/ally_pull.mp3');
-const enemySound = new Audio('sound/enemy_pull.mp3');
+const explodSound = new Audio('sound/Explode_Sound.mp3')
+const gunSound = new Audio('sound/Rifle_Firing_Sound.mp3');
+const enemySound = new Audio('sound/Weew_sound.mp3');
 const winSound = new Audio('sound/game_win.mp3');
-const bgSound = new Audio('sound/bg.mp3');
+// const bgSound = new Audio('sound/bg.mp3');
+const bgSound = new Audio('sound/Star_Wars_Main_Theme.mp3')
 const alertSound = new Audio('sound/alert.wav');
 
 let started = false;
@@ -37,6 +40,7 @@ gameTitle.setAttribute('src', 'img/Star-Wars_logo.png')
 gameSubTitle.innerHTML = "How to Play ?"
 gameMessage.innerHTML = " Destory All Aliens Within the Time Limit <br>    "
 
+// playSound(bgSound);
 gameBtn.addEventListener('click', () => {
   if (started) {
     stopGame();
@@ -77,7 +81,7 @@ function finishGame(win) {
   if(win) {
     playSound(winSound);
   } else {
-    playSound(enemySound);
+    playSound(explodSound);
   }
   stopGameTimer();
   stopSound(bgSound);
@@ -85,6 +89,7 @@ function finishGame(win) {
 }
 
 function onFieldClick(event) {
+  playSound(gunSound);
   if (!started) {
     return;
   }
@@ -92,7 +97,7 @@ function onFieldClick(event) {
   if (target.matches('.enemy')) {
     target.remove();
     score++;
-    playSound(allySound);
+    playSound(enemySound);
     updateScoreBoard();
     if (score === ALLY_COUNT) {
       finishGame(true);
