@@ -4,10 +4,10 @@
 import { v4 as uuidv4 } from 'https://cdn.skypack.dev/uuid';
 
 ///
-const ALLY_COUNT = 3;
+const ALLY_COUNT = 20;
 const ALLY_SIZE = 80;
-const ENEMY_COUNT = 3;
-const GAME_DURATION_SEC = 3;
+const ENEMY_COUNT = 20;
+const GAME_DURATION_SEC = 10;
 
 const field = document.querySelector('.game__field');
 const fieldRect = field.getBoundingClientRect();
@@ -99,7 +99,7 @@ function onFieldClick(event) {
     score++;
     playSound(enemySound);
     updateScoreBoard();
-    if (score === ALLY_COUNT) {
+    if (score === ENEMY_COUNT) {
       finishGame(true);
     }
   } else if (target.matches('.ally')) {
