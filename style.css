@@ -63,6 +63,48 @@ body {
   cursor: auto;
 }
 
+.game__explanation {
+  display: block;
+  width: 400px;
+  height: 240px;
+  margin: auto;
+  padding: 20px;
+  text-align: center;
+  background-color: #00000090;
+  border-radius: 20px;
+  color: white;
+  transform: translateY(-140%);
+}
+
+.game__explanation--hide {
+  display: none;
+}
+
+.game__title {
+  width: 200px;
+  /* height: 55px; */
+  /* font-style: bold; */
+  /* font-weight: bold; */
+  /* font-size: 28px; */
+  margin: 15px 0px 15px 0px;
+  /* color: #FFE81F; */
+}
+
+.game__subtitle {
+  font-size: 16x;
+  margin: 0px 0px 15px 0px;
+}
+
+.game__message {
+  display: block;
+  color: white;
+  cursor: auto;
+  user-select: none;
+  font-size: 20px;
+  line-height: 100%;
+  color: #FFE81F;
+}
+
 .game__button:hover {
   transform: scale(1.1);
 }

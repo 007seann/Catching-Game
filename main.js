@@ -4,16 +4,20 @@
 import { v4 as uuidv4 } from 'https://cdn.skypack.dev/uuid';
 
 ///
-const SPACESHIP_COUNT = 5;
-const SPACESHIP_SIZE = 80;
-const ALIEN_COUNT = 5;
-const GAME_DURATION_SEC = 5;
+const ALLY_COUNT = 10;
+const ALLY_SIZE = 80;
+const ENEMY_COUNT = 10;
+const GAME_DURATION_SEC = 10;
 
 const field = document.querySelector('.game__field');
 const fieldRect = field.getBoundingClientRect();
 const gameBtn = document.querySelector('.game__button');
 const gameScore = document.querySelector('.game__score');
 const gameTimer = document.querySelector('.game__timer');
+const gameExplanation = document.querySelector('.game__explanation');
+const gameMessage = document.querySelector('.game__message');
+const gameTitle = document.querySelector('.game__title');
+const gameSubTitle = document.querySelector('.game__subtitle');
 
 const popUp = document.querySelector('.pop-up');
 const popUpMessage = document.querySelector('.pop-up__message');
@@ -28,6 +32,10 @@ const alertSound = new Audio('sound/alert.wav');
 let started = false;
 let score = 0;
 let timer = undefined;
+
+gameTitle.setAttribute('src', 'img/Star-Wars_logo.png')
+gameSubTitle.innerHTML = "How to Play ?"
+gameMessage.innerHTML = " Destory All Aliens Within the Time Limit <br>    "
 
 gameBtn.addEventListener('click', () => {
   if (started) {
@@ -47,6 +55,7 @@ popUpRefresh.addEventListener('click', () => {
 function startGame() {
   started = true;
   initGame();
+  hideGameExplanation();
   showStopButton();
   showTimerAndScore();
   startGameTimer();
@@ -80,15 +89,15 @@ function onFieldClick(event) {
     return;
   }
   const target = event.target;
-  if (target.matches('.spaceship')) {
+  if (target.matches('.enemy')) {
     target.remove();
     score++;
     playSound(allySound);
     updateScoreBoard();
-    if (score === SPACESHIP_COUNT) {
+    if (score === ALLY_COUNT) {
       finishGame(true);
     }
-  } else if (target.matches('.alien')) {
+  } else if (target.matches('.ally')) {
     finishGame(false);
   }
 }
@@ -103,22 +112,22 @@ function stopSound(sound) {
 }
 
 function updateScoreBoard() {
-  gameScore.innerText = SPACESHIP_COUNT - score;
+  gameScore.innerText = ALLY_COUNT - score;
 }
 
 function initGame() {
   score = 0;
   field.innerHTML = '';
-  gameScore.innerText = SPACESHIP_COUNT;
-  addItem('spaceship', SPACESHIP_COUNT, 'img/spaceship.png');
-  addItem('alien', ALIEN_COUNT, 'img/alien.png');
+  gameScore.innerText = ALLY_COUNT;
+  addItem('ally', ALLY_COUNT, 'img/spaceship.png');
+  addItem('enemy', ENEMY_COUNT, 'img/alien.png');
 }
 
 function addItem(className, count, imgPath) {
   const x1 = 0;
   const y1 = 0;
-  const x2 = fieldRect.width - SPACESHIP_SIZE;
-  const y2 = fieldRect.height - SPACESHIP_SIZE;
+  const x2 = fieldRect.width - ALLY_SIZE;
+  const y2 = fieldRect.height - ALLY_SIZE;
   for (let i = 0; i < count; i++) {
     const item = document.createElement('img');
     item.setAttribute('class', className);
@@ -154,7 +163,7 @@ function startGameTimer() {
   timer = setInterval( () => {
     if (remainingTimeSec <= 0) {
       clearInterval(timer);
-      finishGame(SPACESHIP_COUNT === score);
+      finishGame(ALLY_COUNT === score);
       return;
     }
     updateTimerText(--remainingTimeSec);
@@ -169,6 +178,10 @@ function updateTimerText(time) {
 
 function hideGameButton() {
   gameBtn.style.visibility = 'hidden';
+}
+
+function hideGameExplanation() {
+  gameExplanation.classList.add('game__explanation--hide')
 }
 
 function showPopUpWithText(text) {
